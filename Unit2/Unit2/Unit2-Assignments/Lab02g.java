@@ -10,8 +10,7 @@ public class Lab02g
 	{
 		//add test cases
 		Fahrenheit myFahrenheit = new Fahrenheit();
-		myFahrenheit.setFahrenheit(50.0);
-		myFahrenheit.getCelsius();
+		myFahrenheit.setFahrenheit(100.0); 
 		myFahrenheit.print();
 	}
 }

@@ -46,7 +46,7 @@ public class Distance
 	{
 
 		System.out.printf("Enter X1 :: " + xOne);
-		System.out.printf("Enter Y1" + yOne);
+		System.out.printf("Enter Y1", args)
 
 	}
 }

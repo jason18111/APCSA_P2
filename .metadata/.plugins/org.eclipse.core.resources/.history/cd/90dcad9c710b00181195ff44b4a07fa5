@@ -16,10 +16,13 @@ public class Distance
 	public Distance()
 	{
 
+
+
 	}
 
 	public Distance(int x1, int y1, int x2, int y2)
 	{
+
 
 
 	}
@@ -27,10 +30,6 @@ public class Distance
 	public void setCoordinates(int x1, int y1, int x2, int y2)
 	{
 
-		xOne = x1;
-		xTwo = x2;
-		yOne = y1;
-		yTwo = y2;
 
 
 	}
@@ -38,15 +37,14 @@ public class Distance
 	public void calcDistance()
 	{
 
-		distance = java.lang.Math.pow(java.lang.Math.pow((double)xTwo - (double)xOne, 2) + java.lang.Math.pow((double)yTwo - (double)yOne, 2), 0.5);
+
 
 	}
 
 	public void print( )
 	{
 
-		System.out.printf("Enter X1 :: " + xOne);
-		System.out.printf("Enter Y1" + yOne);
+
 
 	}
 }

@@ -45,8 +45,11 @@ public class Distance
 	public void print( )
 	{
 
-		System.out.printf("Enter X1 :: " + xOne);
-		System.out.printf("Enter Y1" + yOne);
+		System.out.println("Enter X1 :: " + xOne);
+		System.out.println("Enter Y1 :: " + yOne);
+		System.out.println("Enter X2 :: " + xTwo);
+		System.out.println("Enter Y2 :: " + yTwo);
+		System.out.println("distance == " + String.format("%.3f", distance));
 
 	}
 }

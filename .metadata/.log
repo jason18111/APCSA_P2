@@ -47,3 +47,19 @@ Contains: The project description file (.project) for 'Unit4' is missing.  This 
 !MESSAGE Errors occurred while refreshing resources with the local file system.
 !SUBENTRY 2 org.eclipse.core.resources 4 567 2018-02-07 11:16:55.085
 !MESSAGE The project description file (.project) for 'Unit4' is missing.  This file contains important information about the project.  The project will not function properly until this file is restored.
+
+!ENTRY org.eclipse.jdt.core 4 4 2018-02-07 11:47:18.116
+!MESSAGE Background Indexer Crash Recovery
+!STACK 0
+java.lang.NegativeArraySizeException
+	at org.eclipse.jdt.internal.compiler.util.HashtableOfObject.<init>(HashtableOfObject.java:38)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.readCategoryTable(DiskIndex.java:663)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategory(DiskIndex.java:466)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeCategories(DiskIndex.java:458)
+	at org.eclipse.jdt.internal.core.index.DiskIndex.mergeWith(DiskIndex.java:560)
+	at org.eclipse.jdt.internal.core.index.Index.save(Index.java:197)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndex(IndexManager.java:905)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.saveIndexes(IndexManager.java:947)
+	at org.eclipse.jdt.internal.core.search.indexing.IndexManager.notifyIdle(IndexManager.java:644)
+	at org.eclipse.jdt.internal.core.search.processing.JobManager.run(JobManager.java:377)
+	at java.lang.Thread.run(Unknown Source)

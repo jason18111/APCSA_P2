@@ -14,8 +14,7 @@ public class Lab03d
 	{
 		//add test cases
 		
-		Distance myDistance = new Distance();
-		myDistance.setCoordinates(2, 3, 5, 8);
+		Distance myDistance = new Distance(2, 3, 5, 8);
 		myDistance.calcDistance();
 		myDistance.print();
 		

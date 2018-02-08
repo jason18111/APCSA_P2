@@ -14,6 +14,9 @@ public class Lab03c
    {
    	//add test cases
    	
+   	Quadratic myQuadratic= new Quadratic(1, 2, 1);
+	myQuadratic.calcRoots();
+	myQuadratic.print();
    	
 		
 		

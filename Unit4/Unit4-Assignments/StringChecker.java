@@ -12,7 +12,7 @@ public class StringChecker
 
 	public StringChecker()
 	{
-		word = " ";
+		word = "";
 	}
 
 	public StringChecker(String s)

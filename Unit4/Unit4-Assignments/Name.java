@@ -12,7 +12,7 @@ public class Name
 
 	public Name()
 	{
-		name = " ";
+		name = "";
 
 	}
 

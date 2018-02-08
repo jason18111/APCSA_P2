@@ -12,34 +12,35 @@ public class Name
 
 	public Name()
 	{
-
+		name = " ";
 
 	}
 
 	public Name(String s)
 	{
 
-
+		setName(s);
 	}
 
    public void setName(String s)
    {
-
-
+	   name = s;
    }
 
 	public String getFirst()
 	{
-		return "";
+		int index = name.indexOf(" ");
+		return name.substring(0, index);
 	}
 
 	public String getLast()
 	{
-		return "";
+		int index = name.indexOf(" ");
+		return name.substring(index+1, name.length());
 	}
 
  	public String toString()
  	{
- 		return "";
+ 		return name + "\n";
 	}
 }

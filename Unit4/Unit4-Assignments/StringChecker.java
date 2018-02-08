@@ -12,14 +12,12 @@ public class StringChecker
 
 	public StringChecker()
 	{
-
-
+		word = " ";
 	}
 
 	public StringChecker(String s)
 	{
-
-
+		setString(s);
 	}
 
    public void setString(String s)
@@ -29,22 +27,32 @@ public class StringChecker
 
 	public boolean findLetter(char c)
 	{
-
-
-
-		return false;
+		int index = word.indexOf(c);
+		if (index >= 0){
+			return true;
+		}
+		else{
+			return false;		
+		}
 	}
+	
+	
 
 	public boolean findSubString(String s)
 	{
-
-
-
+		int index = word.indexOf(s);
+		if (index >= 0){
+			return true;
+		}
+		
+		else{
 		return false;
+		}
+		
 	}
 
  	public String toString()
  	{
- 		return "\n\n";
+ 		return word + "\n\n";
 	}
 }

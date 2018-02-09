@@ -12,7 +12,8 @@ public class Lab09f
 	{
 		//add test cases
 		
-		
+		LetterRemover myLetterRemover = new LetterRemover("eeeesssssttttt", 's');
+		System.out.println(myLetterRemover);
 											
 	}
 }

@@ -12,8 +12,8 @@ public class Lab08g
 	{
 		//add test cases
 		
-		
-		
+		LoopStats myLoopStats = new LoopStats(4, 6);
+		System.out.println(myLoopStats);
 		
 		
 					

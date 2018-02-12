@@ -33,34 +33,18 @@ public class CharacterAnalyzer
 
 	public boolean isUpper( )
 	{
-		if (theChar == Character.toUpperCase(theChar)){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return Character.isUpperCase(theChar);
 	}
 
 	public boolean isLower( )
 	{
-		if (theChar == Character.toLowerCase(theChar)){
-			return true;
-		}
-		else{
-			return false;
-		}
+		return Character.isLowerCase(theChar);
 
 	}
 	
 	public boolean isNumber( )
 	{
-		int ASCII = (int) theChar;
-		if (ASCII >= 48 && ASCII <=39){
-			return true;
-		}
-		else {
-			return false;
-		}
+		return Character.isDigit(theChar);
 	}	
 
 	public int getASCII( )
@@ -71,11 +55,17 @@ public class CharacterAnalyzer
 
 	public String toString()
 	{
-		if (isUpper() == false){
+		if (isNumber() == true){
+			return getChar() + " is a number. ASCII == " + getASCII() + "\n";
+		}
+		else if (isLower() == true){
 			return getChar() + " is a lowercase character. ASCII == " + getASCII() + "\n";	  
 		}
+		else if (isUpper() == true){
+			return getChar() + " is an uppercase character. ASCII == " + getASCII() + "\n";	  	  
+		}
 		else{
-			return getChar() + " is an uppercase character. ASCII == " + getASCII() + "\n";	  
+			return getChar() + " ASCII == " + getASCII() + "\n";
 		}
 	}
 }

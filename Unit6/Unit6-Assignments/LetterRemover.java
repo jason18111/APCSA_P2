@@ -33,7 +33,7 @@ public class LetterRemover
 
 	public String removeLetters()
 	{
-		String cleaned=sentence;
+		String cleaned= "";
 			for (int i = 0; i <= sentence.length()-1; i++){
 				if(sentence.charAt(i) != lookFor){
 					cleaned += sentence.charAt(i);

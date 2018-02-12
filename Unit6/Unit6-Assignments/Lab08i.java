@@ -13,11 +13,8 @@ public class Lab08i
 	{
 		//add test cases
 		
-		
-		
-		
-		
-		
+		Prime myPrime = new Prime(7919);
+		System.out.println(myPrime);
 		
 	}	
 }

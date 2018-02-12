@@ -13,8 +13,7 @@ public class GuessingGame
 
 	public GuessingGame(int stop)
 	{
-
-
+		
 	}
 
 	public void playGame()

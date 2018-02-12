@@ -10,11 +10,8 @@ public class Lab11c
 {
    public static void main( String args[] )
    {
-
-
-
-
-
+	   TriangleThree myTriangleThree = new TriangleThree(4, "a");
+	   System.out.println(myTriangleThree);
 
 	}
 }

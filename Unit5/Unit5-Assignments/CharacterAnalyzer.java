@@ -65,7 +65,7 @@ public class CharacterAnalyzer
 			return getChar() + " is an uppercase character. ASCII == " + getASCII() + "\n";	  	  
 		}
 		else{
-			return getChar() + " ASCII == " + getASCII() + "\n";
+			return "";
 		}
 	}
 }

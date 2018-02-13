@@ -22,10 +22,10 @@ public class Name
 		setName(s);
 	}
 
-   public void setName(String s)
-   {
+	public void setName(String s)
+	{
 	   name = s;
-   }
+	}
 
 	public String getFirst()
 	{

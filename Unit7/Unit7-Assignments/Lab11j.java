@@ -10,6 +10,7 @@ public class Lab11j
 {
    public static void main(String args[])
    {
-
+	   Triples myTriples = new Triples(50);
+	   System.out.println(myTriples);
 	}
 }

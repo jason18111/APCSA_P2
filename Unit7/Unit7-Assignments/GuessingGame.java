@@ -11,6 +11,8 @@ public class GuessingGame
 {
 	private int upperBound;
 	private int randomInt;
+	private int numGuesses;
+
 	
 	public GuessingGame(int stop)
 	{
@@ -19,18 +21,30 @@ public class GuessingGame
 
 	public void playGame()
 	{
-		Scanner keyboard = new Scanner(System.in);
-		int num = keyboard.nextInt();
-		randomInt = Math.round(Math.random*1, );
-
-
-
-
+	
+		int counter;
+		randomInt = (int) Math.round( (Math.random() * (upperBound-1)) + 1 );
+		System.out.println(randomInt);
+	
+		int num = 0;
+		while(num != randomInt) {
+			System.out.println("Enter a number between 1 and " + upperBound);
+			Scanner keyboard = new Scanner(System.in);
+			num = keyboard.nextInt();
+			if(num > upperBound) {
+				System.out.println("Number out of range!");
+			}
+			numGuesses++;
+		}
 	}
+
+
+
 
 	public String toString()
 	{
-		String output="It took " + numGuesses + " guesse sto guess " + randInt;
+		double percentWrong = (double)(numGuesses -1)/(double)(numGuesses)*100.00;
+		String output="It took " + numGuesses + " guesses to guess " + randomInt + "\n" + "You guessed wrong " + percentWrong + " percent of the time.";
 		return output;
 	}
 }

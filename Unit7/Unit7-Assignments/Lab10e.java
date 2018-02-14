@@ -9,19 +9,38 @@ import static java.lang.System.*;
 
 public class Lab10e
 {
+	
 	public static void main(String args[])
 	{
-		System.out.println("Guessing Game - how many number?");
+		
+		boolean playAgain = true;
+		
+		System.out.println("Guessing Game - how many numbers?");
 		Scanner keyboard = new Scanner(System.in);
 		int num1 = keyboard.nextInt();
-		System.out.println("Enter a number between 1 and " + num);
-		Scanner response = new Scanner(System.in);
-		int num2 = response.nextInt();
-		GuessingGame myGuessingGame = new GuessingGame(num2);
-	
-
-
-
-
+		GuessingGame myGuessingGame = new GuessingGame(num1);
+		myGuessingGame.playGame();
+		System.out.println(myGuessingGame);
+		
+		while (playAgain == true) {
+			System.out.println("Do you want to play again? (y for yes) ");
+				Scanner keyboard1 = new Scanner(System.in);
+				String play = keyboard1.nextLine();
+				if(play.equals("y") == true || play.equals("yes") == true) {
+					playAgain = true;
+				}
+				else{
+					playAgain = false;
+				}
+			if(playAgain == true) {
+				
+				System.out.println("Guessing Game - how many numbers?");
+				Scanner keyboard2 = new Scanner(System.in);
+				int num2 = keyboard.nextInt();
+				GuessingGame myGuessingGame2 = new GuessingGame(num2);
+				myGuessingGame2.playGame();
+				System.out.println(myGuessingGame2);
+			}
+		}
 	}
 }

@@ -44,7 +44,7 @@ public class GuessingGame
 	public String toString()
 	{
 		double percentWrong = (double)(numGuesses -1)/(double)(numGuesses)*100.00;
-		String output="It took " + numGuesses + " guesses to guess " + randomInt + "\n" + "You guessed wrong " + percentWrong + " percent of the time.";
+		String output="It took " + numGuesses + " guesses to guess " + randomInt + "\n" + "You guessed wrong " + String.format("%.3f", percentWrong) + " percent of the time.";
 		return output;
 	}
 }

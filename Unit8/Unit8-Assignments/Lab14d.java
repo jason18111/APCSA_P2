@@ -4,13 +4,30 @@
 //Class -
 //Lab  -
 
+import java.util.Scanner;
+
 public class Lab14d
 {
+	double [] array;
+	
 	public static void main( String args[] )
 	{
 		//add test cases
+		System.out.println("How many grades would you like to input?");
+		Scanner len = new Scanner(System.in);
+		int length = len.nextInt();
+		for (int i = 0; i<length; i++){
+			System.out.println("Grade " + i + "?");
+			Scanner Grade = new Scanner(System.in);
+			int grade = Grade.nextInt();
+			array[i] = grade;
+		}
 		
 		
+		
+		Grades myGrades = new Grades(array, array.length);
+		myGrades.orderArray();
+		System.out.println(myGrades);
 		
 	}
 }

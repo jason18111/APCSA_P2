@@ -44,12 +44,12 @@ public class CharacterAnalyzer
 	
 	public boolean isNumber( )
 	{
-		return Character.isDigit(theChar);
+		return Character.isDigit(theChar); 
 	}	
 
 	public int getASCII( )
 	{
-		int ASCII = (int) theChar;
+		int ASCII = (int) getChar();
 		return ASCII;
 	}
 

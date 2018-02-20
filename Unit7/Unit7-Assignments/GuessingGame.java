@@ -22,8 +22,8 @@ public class GuessingGame
 	public void playGame()
 	{
 	
-		randomInt = (int) Math.round( (Math.random() * (upperBound-1)) + 1 );
-//		System.out.println(randomInt);
+		randomInt = (int) Math.round((Math.random() * (upperBound-1)) + 1);
+		System.out.println(randomInt);
 	
 		int num = 0;
 		while(num != randomInt) {

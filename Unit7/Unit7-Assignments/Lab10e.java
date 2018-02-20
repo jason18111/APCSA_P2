@@ -14,7 +14,6 @@ public class Lab10e
 	{
 		
 		boolean playAgain = true;
-		
 		System.out.println("Guessing Game - how many numbers?");
 		Scanner keyboard = new Scanner(System.in);
 		int num1 = keyboard.nextInt();

@@ -19,32 +19,22 @@ public class RomanNumeral
 
 	public RomanNumeral(String str)
 	{
-
-
-
+		setRoman(str);
 	}
 
 	public RomanNumeral(Integer orig)
 	{
-
-
-
+		setNumber(orig);
 	}
 
 	public void setNumber(Integer num)
 	{
-
-
-
-
-
+		number = num;
 	}
 
 	public void setRoman(String rom)
 	{
-
-
-
+		roman = rom;
 	}
 
 	public Integer getNumber()

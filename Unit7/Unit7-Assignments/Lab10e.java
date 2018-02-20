@@ -23,8 +23,9 @@ public class Lab10e
 		System.out.println(myGuessingGame);
 		
 		while (playAgain == true) {
-			System.out.println("Do you want to play again? (y for yes) ");
-				String play = keyboard.nextLine();
+				System.out.println("Do you want to play again? (y for yes) ");
+				Scanner keyboard1 = new Scanner(System.in);
+				String play = keyboard1.nextLine();
 				if(play.equals("y") == true || play.equals("yes") == true) {
 					playAgain = true;
 				}
@@ -32,9 +33,9 @@ public class Lab10e
 					playAgain = false;
 				}
 			if(playAgain == true) {
-				
 				System.out.println("Guessing Game - how many numbers?");
-				int num2 = keyboard.nextInt();
+				Scanner keyboard2 = new Scanner(System.in);
+				int num2 = keyboard2.nextInt();
 				GuessingGame myGuessingGame2 = new GuessingGame(num2);
 				myGuessingGame2.playGame();
 				System.out.println(myGuessingGame2);

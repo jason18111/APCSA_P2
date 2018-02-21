@@ -37,7 +37,7 @@ public class Lab10e
 				int num2 = keyboard2.nextInt();
 				GuessingGame myGuessingGame2 = new GuessingGame(num2);
 				myGuessingGame2.playGame();
-				System.out.println(myGuessingGame2);
+				System.out.println(myGuessingGame2); 
 			}
 		}
 	}

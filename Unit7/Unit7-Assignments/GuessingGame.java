@@ -23,7 +23,7 @@ public class GuessingGame
 	{
 	
 		randomInt = (int) Math.round((Math.random() * (upperBound-1)) + 1);
-		System.out.println(randomInt);
+//		System.out.println(randomInt);
 	
 		int num = 0;
 		while(num != randomInt) {

@@ -26,7 +26,6 @@ public class Triples
 	public void setNum(int num)
 	{
 		number = num;
-
 	}
 	
 	private int greatestCommonFactor(int a, int b, int c)

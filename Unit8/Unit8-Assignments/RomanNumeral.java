@@ -39,11 +39,39 @@ public class RomanNumeral
 
 	public Integer getNumber()
 	{
+		int max = 0;
+		for (int i = 0; i<roman.length(); i++){
+			for (int j = 0; j<LETTERS.length; j++){
+				if((i+1)<roman.length() && roman.substring(i, i+2) == LETTERS[j]){
+					 max=j;
+					 
+					 i++;
+				}
+				else if(Character.toString(roman.charAt(i)) == LETTERS[j] && LETTERS[max].length()==1){
+					max=j;
+				}
+				else{
+					max=-1;
+				}
+			}
+			if(max != -1){
+				number += NUMBERS[max];
+			}
+		}
 		return number;
 	}
+		
 
+
+	public String getRoman(){
+		
+		
+		
+		return roman;
+	}
+	
 	public String toString()
 	{
-		return roman + "\n";
+		return getNumber() + " ";
 	}
 }

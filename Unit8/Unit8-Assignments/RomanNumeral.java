@@ -44,19 +44,15 @@ public class RomanNumeral
 		int max = 0;
 		for (int i = 0; i<roman.length(); i++){
 			for (int j = 0; j<LETTERS.length; j++){
-				
 				if((i+1)<roman.length() && roman.substring(i, i+2).equals(LETTERS[j])){
 					 max=j;
-					 
 					 i++;
 				}
 				else if(Character.toString(roman.charAt(i)).equals(LETTERS[j]) && LETTERS[max].length()==1){
 					max=j;
 				}
 			}
-
 			number += NUMBERS[max];
-			
 		}
 		return number;
 	}

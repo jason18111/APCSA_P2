@@ -41,7 +41,7 @@ public class TriangleThree
 				output += " ";
 			}
 			for (int i3=size-i+1; i3 <= size; i3++){
-				output += letter;
+				output += getLetter();
 			}
 			output += "\n";
 		}

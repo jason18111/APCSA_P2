@@ -43,6 +43,7 @@ public class RomanNumeral
 	{
 		int max = 0;
 		for (int i = 0; i<roman.length(); i++){
+			max = 0;
 			for (int j = 0; j<LETTERS.length; j++){
 				if((i+1)<roman.length() && roman.substring(i, i+2).equals(LETTERS[j])){
 					 max=j;
@@ -65,7 +66,7 @@ public class RomanNumeral
 			if(number >=NUMBERS[i]){
 				roman += LETTERS[i];
 				number = number - NUMBERS[i];
-				i--;					
+				i--;
 			}
 		}
 		

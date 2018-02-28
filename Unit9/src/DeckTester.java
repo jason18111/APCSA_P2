@@ -9,5 +9,9 @@ public class DeckTester {
 	 */
 	public static void main(String[] args) {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
+		String ranks[] = {"Ace", "ten", "five"};
+		
+		String suits[] = {spades, hearts, clubs};
+		Deck myDeck = new Deck(ranks[], suits[], values[]);
 	}
 }

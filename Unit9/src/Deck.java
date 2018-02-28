@@ -77,9 +77,13 @@ public class Deck {
 	 */
 	public Card deal() {
 		/* *** TO BE IMPLEMENTED IN ACTIVITY 2 *** */
-		for(int i=size; i==0; i--){
-			size--;
-			return cards[i];
+		if(size != 0){
+			Card card = cards[size];
+			size --;
+			return card;
+		}
+		else{
+			return null;
 		}
 	}
 

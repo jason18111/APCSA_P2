@@ -13,7 +13,6 @@ public class DeckTester {
 		String suits[] = {"spades", "hearts", "clubs", "diamonds"};
 		int values[] = {2, 3, 4, 5, 6, 7, 8, 9, 10, 10, 10, 10, 11};
 		Deck myDeck = new Deck(ranks, suits, values);
-		myDeck.shuffle();
 		System.out.println(myDeck);
 		myDeck.deal();
 		System.out.println(myDeck);

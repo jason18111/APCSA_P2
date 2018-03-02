@@ -107,7 +107,7 @@ public class DeckTester {
 	 * @param intended is the card that the one-card deck should contain.
 	 */
 	private static void testOneCard(Deck d, Card intended) {
-		assert d.size() == 1 : "Size is " + d.size()
+		assert d.size() == 0 : "Size is " + d.size()
 			+ ". It should be 1 for a 1-card deck.";
 		assert !d.isEmpty() : "isEmpty true for a 1-card deck.";
 		Card c = d.deal();

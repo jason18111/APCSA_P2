@@ -10,6 +10,7 @@ public class Lab14i
 {
 	public static void main( String args[] )
 	{
+		out.println("9\t9");
 		RomanNumeral test = new RomanNumeral(10);
 		out.println("10 is " + test.toString());
 

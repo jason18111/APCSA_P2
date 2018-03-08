@@ -20,15 +20,15 @@ public class Histogram
 	public Histogram()
 	{
 		
-
-
+		count = new ArrayList<Integer>();
+		letters = new ArrayList<Character>();
 
 	}
 
 	public Histogram(char[] values, String fName)
 	{
 		for (int i= 0; i<values.length; i++){
-			letters.add(values[0]);
+			letters.add(values[i]);
 		}
 		out.println("search letters = "+letters);
 		fileName = fName;
@@ -38,23 +38,35 @@ public class Histogram
 	{
 		Scanner file = new Scanner(fileName);
 		while (file.hasNext()){
-			
+			for(int i = 0; i<letters.size(); i++){
+				if(file.next().equals(letters.get(i))){
+					count.add(i, count.get(i)+1);
+				}
+			}
 		}
 	}
 
 	public char mostFrequent()
 	{
-		
-			
-		
-		return '#';
+		int holder = 0;
+		for (int i = 0; i<count.size(); i++){
+			if (count.get(i)>holder){
+				holder = count.get(i);
+			}
+		}
+		return letters.get(holder);
 	}
 
 	public char leastFrequent()
 	{
+		int holder = 0;
+		for (int i = 0; i>count.size(); i++){
+			if (count.get(i)<holder){
+				holder = count.get(i);
+			}
+		}
+		return letters.get(holder);
 
-
-		return '#';
 	}
 
 	public String toString()

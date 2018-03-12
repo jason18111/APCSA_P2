@@ -36,7 +36,6 @@ public class Grades
 		while(gradebook.hasNext()){
 			double grade = gradebook.nextDouble();
 			setGrade(counter, grade);
-			System.out.println(grades[counter]);
 			counter++;
 		}
 		
@@ -87,11 +86,9 @@ public class Grades
 	public String toString()
 	{
 		String output="";
-
-
-
-
-
+		for (int i = 0; i<grades.length; i++){
+			output += grades[i] + " ";
+		}
 		return output;
 	}	
 }

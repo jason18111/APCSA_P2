@@ -19,6 +19,7 @@ public class GradesTester
 		out.println("num grades = " + test.getNumGrades());											
 		out.println("low grade = " + test.getLowGrade());		
 		out.println("high grade = " + test.getHighGrade());
+		out.println("\n");
 		
    		Grades test1 = new Grades("9 - 10 70 90 92.5 85 95.5 77.5 88 100.0");
 		out.println(test1);

@@ -8,16 +8,57 @@ import java.util.Arrays;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
+import java.io.File;
+import java.io.IOException;
 
 public class GradeBookRunner
 {
-   public static void main( String args[] )
+   public static void main( String args[] ) throws IOException
    {
 		out.println("Welcome to the Class Stats program!");
 		
-		Scanner keyboard = new Scanner(System.in);
-
-
+		Scanner data = new Scanner(new File("gradebook.dat"));
+		String className = data.nextLine();
+		int numStudents = data.nextInt();
+		data.nextLine();
+		Class myClass = new Class(className, numStudents);
+		for(int i = 0; i<numStudents; i++){
+			String name = data.nextLine();
+//			System.out.println(name);
+			String grades = data.nextLine();
+//			System.out.println(grades);
+			myClass.addStudent(i, new Student(name, grades));
+		}
+		System.out.println(myClass);
+		
+		
+		for(int i=0; i<numStudents; i++){
+			for(int j = i; j<numStudents; j++){
+				if(myClass.getStudentAverage(i) > myClass.getStudentAverage(j)){
+					Student holder = myClass.getStudent(i);
+					myClass.addStudent(i, myClass.getStudent(j));
+					myClass.addStudent(j, holder);
+				}
+			}
+		}
+		System.out.println(myClass);
+		
+		
+		System.out.println("Failure List = " + myClass.getFailureList(70));	
+		System.out.println("Highest Average = " + myClass.getStudentWithHighestAverage());
+		System.out.println("Lowest Average = " + myClass.getStudentWithLowestAverage());
+		out.println(String.format("Class Average = " + myClass.getClassAverage()));
+		
+		
+		for(int i=0; i<numStudents; i++){
+			for(int j = i; j<numStudents; j++){
+				if(myClass.getStudentAverage(i) < myClass.getStudentAverage(j)){
+					Student holder = myClass.getStudent(i);
+					myClass.addStudent(i, myClass.getStudent(j));
+					myClass.addStudent(j, holder);
+				}
+			}
+		}
 
 
 

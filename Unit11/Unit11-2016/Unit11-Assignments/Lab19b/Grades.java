@@ -11,7 +11,7 @@ import static java.util.Arrays.*;
 
 public class Grades
 {
-	private double[] grades;
+//	private double[] grades;
 	
 	public Grades()
 	{

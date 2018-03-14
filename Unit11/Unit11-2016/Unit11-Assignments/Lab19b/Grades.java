@@ -5,6 +5,7 @@
 //Lab  -
 
 import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.Scanner;
 import static java.lang.System.*;
 import static java.util.Arrays.*;
@@ -12,6 +13,7 @@ import static java.util.Arrays.*;
 public class Grades
 {
 //	private double[] grades;
+	private ArrayList<Double> grades;
 	
 	public Grades()
 	{
@@ -27,7 +29,11 @@ public class Grades
 	{
 		int counter = 0;
 		int size = Integer.parseInt(gradeList.substring(0, 1));
-		grades = new double[size];
+//		grades = new double [size];
+		grades = new  ArrayList<Double>();
+		for(int i = 0; i<size; i++){
+			grades.add((double) 0);
+		}
 		
 		String gradesWithoutSize = gradeList.substring(gradeList.indexOf("-") + 1);
 		
@@ -44,7 +50,8 @@ public class Grades
 	
 	public void setGrade(int spot, double grade)
 	{
-		grades[spot] = grade;
+//		grades[spot] = grade;
+		grades.set(spot, grade);
 	}
 	
 	public double getSum()
@@ -80,15 +87,22 @@ public class Grades
 	
 	public int getNumGrades()
 	{
-		return grades.length;
+//		return grades.length;
+		return grades.size();
 	}
 	
 	public String toString()
 	{
 		String output="";
-		for (int i = 0; i<grades.length; i++){
-			output += grades[i] + " ";
+		
+/*		for (int i = 0; i<grades.length; i++){
+			output = grades[i] + " ";
 		}
+*/	
+		for (int i = 0; i<grades.size(); i++){
+			output += grades.get(i) + " ";
+		}
+
 		return output;
 	}	
 }

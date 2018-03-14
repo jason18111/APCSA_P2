@@ -11,71 +11,40 @@ import static java.util.Arrays.*;
 import java.io.File;
 import java.io.IOException;
 
+
 public class GradeBookRunner
 {
-   public static void main( String args[] ) throws IOException
+   public static void main( String args[] ) throws Exception
    {
 		out.println("Welcome to the Class Stats program!");
 		
-		Scanner data = new Scanner(new File("gradebook.dat"));
-		String className = data.nextLine();
-		int numStudents = data.nextInt();
-		data.nextLine();
+		Scanner keyboard = new Scanner(System.in);
+		out.print("\n\nWhat is the name of this class? ");
+		String className = keyboard.nextLine();
+		out.print("\n\nHow many students are in this class? ");
+		int numStudents = keyboard.nextInt();
+		keyboard.nextLine();
+		
 		Class myClass = new Class(className, numStudents);
-		for(int i = 0; i<numStudents; i++){
-			String name = data.nextLine();
-//			System.out.println(name);
-			String grades = data.nextLine();
-//			System.out.println(grades);
-			myClass.addStudent(i, new Student(name, grades));
-		}
+		
+		int counter = 1; 
+		do{
+			out.println("Enter the name of student " + counter + ":");
+			Scanner keyboard2 = new Scanner (System.in);
+			String studentName = keyboard2.nextLine();
+			out.println("Enter the grades for " + studentName);
+			out.println("use the format --> size - grade1 grade2 grade3...");
+			Scanner keyboard3 = new Scanner (System.in);
+			String grades = keyboard3.nextLine();
+			myClass.addStudent(counter - 1, new Student(studentName, grades));
+			counter++;
+		}while(counter<=numStudents);
+		
 		System.out.println(myClass);
-		
-		
-		for(int i=0; i<numStudents; i++){
-			for(int j = i; j<numStudents; j++){
-				if(myClass.getStudentAverage(i) > myClass.getStudentAverage(j)){
-					Student holder = myClass.getStudent(i);
-					myClass.addStudent(i, myClass.getStudent(j));
-					myClass.addStudent(j, holder);
-				}
-			}
-		}
-		System.out.println(myClass);
-		
-		
 		System.out.println("Failure List = " + myClass.getFailureList(70));	
 		System.out.println("Highest Average = " + myClass.getStudentWithHighestAverage());
 		System.out.println("Lowest Average = " + myClass.getStudentWithLowestAverage());
 		out.println(String.format("Class Average = " + myClass.getClassAverage()));
 		
-		
-		for(int i=0; i<numStudents; i++){
-			for(int j = i; j<numStudents; j++){
-				if(myClass.getStudentAverage(i) < myClass.getStudentAverage(j)){
-					Student holder = myClass.getStudent(i);
-					myClass.addStudent(i, myClass.getStudent(j));
-					myClass.addStudent(j, holder);
-				}
-			}
-		}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-	}		
+   }
 }

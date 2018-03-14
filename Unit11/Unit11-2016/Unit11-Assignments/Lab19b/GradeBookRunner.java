@@ -44,7 +44,6 @@ public class GradeBookRunner
 		System.out.println("Failure List = " + myClass.getFailureList(70));	
 		System.out.println("Highest Average = " + myClass.getStudentWithHighestAverage());
 		System.out.println("Lowest Average = " + myClass.getStudentWithLowestAverage());
-		out.println(String.format("Class Average = " + myClass.getClassAverage()));
-		
+		out.println(String.format("Class Average = " + myClass.getClassAverage()));	
    }
 }

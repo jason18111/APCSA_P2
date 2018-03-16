@@ -29,6 +29,7 @@ public class Class
 //		studentList = new Student[stuCount];
 		studentList = new ArrayList<Student>();
 
+
 	}
 	
 	public Student getStudent(int stuNum){

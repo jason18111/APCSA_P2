@@ -16,7 +16,6 @@ public class GradeBookFileRunner
 	public static void main( String args[] ) throws IOException
 	{
 		out.println("Welcome to the Class Stats program!");
-		
 		Scanner data = new Scanner(new File("gradebook.dat"));
 		String className = data.nextLine();
 		int numStudents = data.nextInt();

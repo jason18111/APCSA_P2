@@ -117,7 +117,7 @@ public abstract class Board {
 	 *         of the non-null entries on the board.
 	 */
 	public List<Integer> cardIndexes() {
-		List<Integer> selected = new ArrayList<Integer>();
+		List<Integer> selected =new ArrayList<Integer>();
 		for (int k = 0; k < cards.length; k++) {
 			if (cards[k] != null) {
 				selected.add(new Integer(k));

@@ -10,11 +10,11 @@ public class AtCounter
 {
    private char[][] atMat;
    private int atCount;
-
-	public AtCounter()
+   private boolean[][] check = new boolean[10][10];
+   public AtCounter()
 	{
-		atCount=0;
-		atMat = new char[][]{{'@','-','@','-','-','@','-','@','@','@'},
+
+		atMat = new char[][]{       {'@','-','@','-','-','@','-','@','@','@'},
 									{'@','@','@','-','@','@','-','@','-','@'},
 									{'-','-','-','-','-','-','-','@','@','@'},
 									{'-','@','@','@','@','@','-','@','-','@'},
@@ -28,24 +28,16 @@ public class AtCounter
 
 	public int countAts(int r, int c)
 	{
-		if(atMat[r][c] == '-'){
-			return 0;
+		if(r>=0 && r<10 && c>=0 && c<10 && check[r][c]==false && atMat[r][c] =='@'){
+			check[r][c] = true;
+			atCount++;
+			countAts(r-1, c);
+			countAts(r, c-1);
+			countAts(r+1, c);
+			countAts(r, c+1);
+			return 1;
 		}
-		//add in recursive code to count up the # of @s connected
-		//start checking at spot [r,c]
-		if(r-1>0){
-			atCount += countAts(r-1, c);
-		}
-		if(c-1>0){
-			atCount += countAts(r, c-1);
-		}
-		if(r+1<atMat[0].length){
-			atCount += countAts(r+1, c);
-		}
-		if(c+1<atMat.length){
-			atCount += countAts(r, c+1);
-		}
-		return 1;
+		return 0;
 	}
 
 	public int getAtCount()

@@ -19,10 +19,9 @@ public class Lab24b
 		for(int i = 0; i<size; i++)
 		{
 			String word = file.next();
-
-
-
-
+			FancyWord thing = new FancyWord(word);
+			out.println(thing);
 	   }
+		
 	}
 }

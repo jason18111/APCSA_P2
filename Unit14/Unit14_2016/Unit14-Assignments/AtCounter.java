@@ -1,4 +1,4 @@
-//© A+ Computer Science  -  www.apluscompsci.com
+//Â© A+ Computer Science  -  www.apluscompsci.com
 //Name -
 //Date -
 //Class -
@@ -29,13 +29,13 @@ public class AtCounter
 	public int countAts(int r, int c)
 	{
 		if(r>=0 && r<10 && c>=0 && c<10 && check[r][c]==false && atMat[r][c] =='@'){
+			atCount=1;
 			check[r][c] = true;
-			atCount++;
-			countAts(r-1, c);
-			countAts(r, c-1);
-			countAts(r+1, c);
-			countAts(r, c+1);
-			return 1;
+			atCount += countAts(r-1, c);
+			atCount += countAts(r, c-1);
+			atCount += countAts(r+1, c);
+			atCount += countAts(r, c+1);
+			return atCount;
 		}
 		return 0;
 	}

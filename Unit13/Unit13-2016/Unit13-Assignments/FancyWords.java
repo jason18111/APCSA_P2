@@ -12,10 +12,16 @@ import static java.lang.System.*;
 public class FancyWords
 {
 	private String[] wordRay;
-
+	private int max;
+	
+	
 	public FancyWords(String sentence)
 	{
-
+		Scanner thing = new Scanner(sentence);
+		wordRay = new String[sentence.length()];
+		for(int i=0; i<wordRay.length; i++){
+			wordRay[i] = thing.next();
+		}
 	}
 
 	public void setWords(String sentence)

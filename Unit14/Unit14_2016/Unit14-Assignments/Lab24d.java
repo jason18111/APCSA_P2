@@ -22,6 +22,3 @@ public class Lab24d
 		}
 	}
 }
-
-
-

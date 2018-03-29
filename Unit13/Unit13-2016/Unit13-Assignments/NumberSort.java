@@ -33,7 +33,15 @@ public class NumberSort
 			sorted[i]=number%10;
 			number/=10;
 		}
-		Arrays.sort(sorted);
+		for(int i=0; i<sorted.length; i++){
+			for(int j=i+1; j<sorted.length; j++){
+				if(sorted[j]<sorted[i]){
+					int holder = sorted[j];
+					sorted[j]=sorted[i];
+					sorted[i]=holder;
+				}
+			}
+		}
 		return sorted;
 	}
 }

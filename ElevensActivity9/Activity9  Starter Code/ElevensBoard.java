@@ -85,10 +85,10 @@ public class ElevensBoard extends Board {
 		for (int i = 0; i<selectedCards.size(); i++){
 			for(int j = i+1; j<selectedCards.size(); j++){
 				for(int k = j+1; k<selectedCards.size(); k++){
-//					if(i!=k && k!=j && i!=j){
+					if(i!=k && k!=j && i!=j){
 						if(cardAt(selectedCards.get(i)).pointValue() + cardAt(selectedCards.get(j)).pointValue() + cardAt(selectedCards.get(k)).pointValue() == 11){
 							return true;
-//						}
+						}
 					}
 				}
 			}

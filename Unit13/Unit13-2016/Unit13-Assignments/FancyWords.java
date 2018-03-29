@@ -18,7 +18,13 @@ public class FancyWords
 	public FancyWords(String sentence)
 	{
 		Scanner thing = new Scanner(sentence);
-		wordRay = new String[sentence.length()];
+		int size = 0;
+		for(int i=0; i<sentence.length(); i++){
+			if(sentence.charAt(i)==' '){
+				size++;
+			}
+		}
+		wordRay = new String[size];
 		for(int i=0; i<wordRay.length; i++){
 			wordRay[i] = thing.next();
 		}
@@ -26,19 +32,30 @@ public class FancyWords
 
 	public void setWords(String sentence)
 	{
-
+		max = Integer.MIN_VALUE;
+		for(int i=0; i<wordRay.length; i++){
+			if(wordRay[i].length()>max){
+				max=wordRay[i].length();
+			}
+			wordRay[i] = new StringBuffer(wordRay[i]).reverse().toString();
+			Collections.reverse(Arrays.asList(wordRay));
+		}
 	}
 
 	public String toString()
 	{
 		String output="";
-		int max = Integer.MIN_VALUE;
-
-
-
-
-
-
+		for(int r=0; r<max; r++){
+			for(int c=0; c<wordRay.length; c++){
+				if(r<wordRay[c].length()){
+					output += wordRay[c].charAt(r);
+				}
+				else{
+					output += " ";
+				}
+			}
+			output += "\n";
+		}
 		return output+"\n\n";
 	}
 }

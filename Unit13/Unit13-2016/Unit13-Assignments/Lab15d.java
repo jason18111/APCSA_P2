@@ -21,6 +21,8 @@ public class Lab15d
 		for(int i = 0; i<size; i++){
 			String input = file.nextLine();
 			FancyWords thing = new FancyWords(input);
+			thing.setWords(input);
+			out.println(thing);
 		}
 	}
 }

@@ -26,7 +26,18 @@ public class Block implements Locatable
 	}
 
 	//add other Block constructors - x , y , width, height, color
-	
+	public Block(int x, int y) {
+		setPos(x, y);
+		width=10;
+		height=10;
+		color=Color.BLACK;
+	}
+	public Block(int x, int y, int width) {
+		setPos(x, y);
+		setWidth(width);
+		height =10;
+		color=Color.BLACK;
+	}
 	public Block(int x, int y, int width, int height){
 		setX(x);
 		setY(y);
@@ -34,7 +45,6 @@ public class Block implements Locatable
 		setHeight(height);
 		color=Color.BLACK;
 	}
-	
 	public Block(int x, int y, int width, int height, Color col){
 		setX(x);
 		setY(y);
@@ -99,6 +109,9 @@ public class Block implements Locatable
 	}
 	public int getHeight(){
 		return height;
+	}
+	public Color getColor() {
+		return color;
 	}
 
    //add a toString() method  - x , y , width, height, color

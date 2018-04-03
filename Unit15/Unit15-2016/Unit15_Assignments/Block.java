@@ -13,7 +13,6 @@ public class Block implements Locatable
 	private int yPos;
 	private int width;
 	private int height;
-
 	private Color color;
 
 	public Block()

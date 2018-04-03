@@ -15,7 +15,7 @@ public class Ball extends Block implements Collidable
 	public Ball()
 	{
 		super(200,200);
-		xSpeed = 2;
+		xSpeed = -1;
 		ySpeed = 1;
 	}
 
@@ -104,14 +104,16 @@ public class Ball extends Block implements Collidable
 	}
 	public boolean didCollideTop(Object obj){
 		Block block = (Block) obj;
-		if(!(this.getY()<=block.getY()+block.getHeight())){
+		if((this.getY()<=block.getY()+this.getHeight()+block.getHeight() && this.getY()>=block.getY()+block.getHeight())
+				&& this.getX()>=block.getX() && this.getX()<=block.getX()+block.getWidth()){
 			return true;
 		}
 		return false;
 	}
 	public boolean didCollideBottom(Object obj) {
 		Block block = (Block) obj;
-		if(!(this.getY()>=block.getY())){
+		if((this.getY()<=block.getY()+this.getHeight() && this.getY()>=block.getY())
+				&& this.getX()>=block.getX() && this.getX()<=block.getX()+block.getWidth()){
 			return true;
 		}
 		return false;

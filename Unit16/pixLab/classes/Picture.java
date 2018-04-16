@@ -98,6 +98,89 @@ public class Picture extends SimplePicture
     }
   }
   
+  public void keepOnlyBlue(){
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setGreen(0);
+	        pixelObj.setRed(0);
+	      }
+	    }
+  }
+  public void keepOnlyRed(){
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setGreen(0);
+	        pixelObj.setBlue(0);
+	      }
+	    }
+  }
+  public void keepOnlyGreen(){
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setBlue(0);
+	        pixelObj.setRed(0);
+	      }
+	    }
+  }
+  public void negate(){
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setBlue(255-pixelObj.getBlue());
+	        pixelObj.setRed(255-pixelObj.getRed());
+	        pixelObj.setGreen(255-pixelObj.getGreen());
+	      }
+	    }
+  }
+  public void grayScale(){
+	  Pixel[][] pixels = this.getPixels2D();
+	    for (Pixel[] rowArray : pixels)
+	    {
+	      for (Pixel pixelObj : rowArray)
+	      {
+	        pixelObj.setBlue((pixelObj.getBlue()+pixelObj.getRed()+pixelObj.getGreen())/3);
+	        pixelObj.setRed((pixelObj.getBlue()+pixelObj.getRed()+pixelObj.getGreen())/3);
+	        pixelObj.setGreen((pixelObj.getBlue()+pixelObj.getRed()+pixelObj.getGreen())/3);
+	      }
+	    }
+  }
+  public void fixUnderwater()
+  {
+		Pixel[][] pixels = this.getPixels2D();
+		long total = 0;
+		int num = 0;
+		for (Pixel[] rowArray : pixels)
+		{
+			for (Pixel pixelObj : rowArray)
+			{
+				int ave = (pixelObj.getBlue() + pixelObj.getRed() + pixelObj.getGreen())/ 3;
+				total += ave;
+				num++;
+			}
+		}
+		int ave = (int) (total = total/num);
+		for (Pixel[] rowArray : pixels)
+		{
+			for (Pixel pixelObj : rowArray)
+			{
+				pixelObj.setBlue(2 * (pixelObj.getBlue() - ave));
+				pixelObj.setRed(2 * (pixelObj.getRed() - ave));
+				pixelObj.setGreen(2 * (pixelObj.getGreen() - ave));
+			}
+		}
+  }
+  
   /** Method that mirrors the picture around a 
     * vertical mirror in the center of the picture
     * from left to right */
@@ -132,6 +215,28 @@ public class Picture extends SimplePicture
     {
       // loop from 13 to just before the mirror point
       for (int col = 13; col < mirrorPoint; col++)
+      {
+        
+        leftPixel = pixels[row][col];      
+        rightPixel = pixels[row]                       
+                         [mirrorPoint - col + mirrorPoint];
+        rightPixel.setColor(leftPixel.getColor());
+      }
+    }
+  }
+  public void mirrorArms()
+  {
+    int mirrorPoint = 204;
+    Pixel leftPixel = null;
+    Pixel rightPixel = null;
+    int count = 0;
+    Pixel[][] pixels = this.getPixels2D();
+    
+    // loop through the rows
+    for (int row = 158; row < 189; row++)
+    {
+      // loop from 13 to just before the mirror point
+      for (int col = 170; col < mirrorPoint; col++)
       {
         
         leftPixel = pixels[row][col];      

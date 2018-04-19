@@ -77,11 +77,23 @@ public class PictureTester
 	  arms.mirrorArms();
 	  arms.explore();
   }
+  public static void testMirrorGull(){
+	  Picture gull = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\seagull.jpg");
+	  gull.explore();
+	  gull.mirrorGull();
+	  gull.explore();
+  }
+  public static void testMirrorDiagonal(){
+	  Picture beach = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\beach.jpg");
+	  beach.explore();
+	  beach.mirrorDiagonal();
+	  beach.explore();
+  }
   
   /** Method to test the collage method */
   public static void testCollage()
   {
-    Picture canvas = new Picture("640x480.jpg");
+    Picture canvas = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\640x480.jpg");
     canvas.createCollage();
     canvas.explore();
   }
@@ -89,9 +101,15 @@ public class PictureTester
   /** Method to test edgeDetection */
   public static void testEdgeDetection()
   {
-    Picture swan = new Picture("swan.jpg");
+    Picture swan = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\swan.jpg");
     swan.edgeDetection(10);
     swan.explore();
+  }
+  
+  public static void testCopy(Picture fromPic, int startRow, int startCol){
+	  Picture swan = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\swan.jpg");
+	  swan.copy(fromPic, startRow, startCol);
+	  swan.explore();
   }
   
   /** Main method for testing.  Every class can have a main
@@ -110,12 +128,14 @@ public class PictureTester
     //testFixUnderwater();
     //testMirrorVertical();
     //testMirrorTemple();
-    testMirrorArms();
+    //testMirrorArms();
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
-    //testCopy();
+	Picture beach = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\beach.jpg");
+    //testCopy(beach, 20, 50);
     //testEdgeDetection();
+//END HERE
     //testEdgeDetection2();
     //testChromakey();
     //testEncodeAndDecode();

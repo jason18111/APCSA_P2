@@ -20,8 +20,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
 //	private ArrayList <Alien> alien= new ArrayList<Alien>();
-	private ArrayList<Ammo> ammo = new ArrayList<Ammo>();
+//	private ArrayList<Ammo> ammo = new ArrayList<Ammo>();
 	private AlienHorde aliens = new AlienHorde(20);
+	private Bullets ammo = new Bullets();
     
 	/* uncomment once you are ready for this part
 	 *
@@ -78,11 +79,12 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			alien.get(i).draw(graphToBack);
 		}
 */
+		ammo.drawEmAll(graphToBack);
+		ammo.cleanEmUp(aliens.getList());
+		ammo.moveEmAll();
 		aliens.drawEmAll(graphToBack);
-		for(int i=0; i<ammo.size(); i++){
-			ammo.get(i).draw(graphToBack);
-			ammo.get(i).move("UP");
-		}
+		aliens.removeDeadOnes(ammo.getList());
+		aliens.moveEmAll();
 
 		if(keys[0] == true)
 		{
@@ -115,10 +117,9 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			}
 		}
 */
-		for(int i: aliens.removeDeadOnes(ammo)){
-			ammo.remove(i);
-		}
-
+		
+		
+		
 		twoDGraph.drawImage(back, null, 0, 0);
 	}
 

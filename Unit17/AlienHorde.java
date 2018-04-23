@@ -14,6 +14,8 @@ import java.util.List;
 
 public class AlienHorde
 {
+	private boolean left = true;
+	private boolean right = true;
 	private ArrayList<Alien> aliens = new ArrayList<Alien>();
 
 	public AlienHorde(int size)
@@ -25,7 +27,7 @@ public class AlienHorde
 			x+=100;
 			if(x>=700){
 				x=50;
-				y=150;
+				y+=50;
 			}
 		}
 	}
@@ -44,10 +46,9 @@ public class AlienHorde
 
 	public void moveEmAll()
 	{
-		boolean left = true;
-		boolean right = true;
+
 		for(int i = 0; i<aliens.size(); i++){
-			if(aliens.get(i).getX()>=700){
+			if(aliens.get(i).getX()>=750-aliens.get(i).getWidth() && right == true){
 				right = false;
 				left = true;
 				for(int j = 0; j<aliens.size(); j++){
@@ -55,7 +56,7 @@ public class AlienHorde
 				}
 				break;
 			}
-			if(aliens.get(i).getX()<=100){
+			else if(aliens.get(i).getX()<=50){
 				left = false;
 				right = true;
 				for(int j = 0; j<aliens.size(); j++){
@@ -63,6 +64,7 @@ public class AlienHorde
 				}
 				break;
 			}
+
 		}
 		for(int i = 0; i<aliens.size(); i++){
 			if(right == true){
@@ -75,27 +77,28 @@ public class AlienHorde
 		
 	}
 
-	public ArrayList<Integer> removeDeadOnes(List<Ammo> ammo)
+	public Ammo removeDeadOnes(List<Ammo> ammo)
 	{
-		ArrayList<Integer> ints = new ArrayList<Integer>();
-		int i = 0;
-		int j = 0;
-		while(i<ammo.size()){
-			while(j<aliens.size()){
+		for(int j = aliens.size()-1; j>=0; j--){
+			for(int i = 0; i<ammo.size(); i++){
 				if(ammo.get(i).getX()+ammo.get(i).getWidth() > aliens.get(j).getX() && ammo.get(i).getX() < aliens.get(j).getX()+aliens.get(j).getWidth()
-						&& ammo.get(i).getY() <= aliens.get(j).getY()-aliens.get(j).getHeight()){
+						&& ammo.get(i).getY() <= aliens.get(j).getY()+aliens.get(j).getHeight() && ammo.get(i).getY()-ammo.get(i).getHeight() >= aliens.get(j).getY()){
 					aliens.remove(j);
-					ints.add(i);
+					return ammo.get(i);
 				}
-				j++;
 			}
-		i++;
 		}
-		return ints;
+		return null;
 	}
+	
+	
 
 	public String toString()
 	{
 		return "";
+	}
+
+	public List<Alien> getList() {
+		return aliens;
 	}
 }

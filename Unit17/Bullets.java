@@ -41,16 +41,9 @@ public class Bullets
 		}
 	}
 
-	public void cleanEmUp(List<Alien> aliens)
+	public void cleanEmUp(Ammo ammo1)
 	{
-		for(int j = aliens.size()-1; j>=0; j--){
-			for(int i = 0; i<ammo.size(); i++){
-				if(ammo.get(i).getX()+ammo.get(i).getWidth() > aliens.get(j).getX() && ammo.get(i).getX() < aliens.get(j).getX()+aliens.get(j).getWidth()
-						&& ammo.get(i).getY() <= aliens.get(j).getY()+aliens.get(j).getHeight() && ammo.get(i).getY()-ammo.get(i).getHeight() >= aliens.get(j).getY()){
-					ammo.remove(i);
-				}
-			}
-		}
+		ammo.remove(ammo1);
 	}
 
 	public List<Ammo> getList()

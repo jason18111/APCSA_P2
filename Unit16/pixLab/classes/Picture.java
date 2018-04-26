@@ -362,6 +362,52 @@ public class Picture extends SimplePicture
       }
     }
   }
+  public void sharpen(int x, int y, int w, int h){
+	  System.out.println("Jason Lin" + " \n" + "Period 2" + "\n" + "4/24/18" + " \n" + "#16");
+	  //opposite of blurring (four parameters - rectangle)
+	  //one way to sharpen is to add one half of the difference between the current pixel and the one diagonally up and to the left to the current pixel
+	  Pixel topLeftPixel = null;
+	  Pixel thisPixel = null;
+	  Pixel[][] pixels = this.getPixels2D();
+	  for (int row = y ; row < y+h; row++){
+		  for(int col = x; col<x+w; col++){
+			  if(row > 0 && col >0){
+				  topLeftPixel=pixels[row-1][col-1];
+			  }
+			  else{
+				  topLeftPixel=pixels[row][col];
+			  }
+			  thisPixel = pixels[row][col];	  
+			  if(thisPixel.getRed()+(int)(0.5*(thisPixel.getRed()-topLeftPixel.getRed())) > 255){
+				  thisPixel.setRed(255);
+			  }
+			  else if(thisPixel.getRed()+(int)(0.5*(thisPixel.getRed()-topLeftPixel.getRed())) < 0){
+				  thisPixel.setRed(0);
+			  }
+			  else{
+				  thisPixel.setRed(thisPixel.getRed()+(int)(0.5*(thisPixel.getRed()-topLeftPixel.getRed())));
+			  }
+			  if(thisPixel.getBlue()+(int)(0.5*(thisPixel.getBlue()-topLeftPixel.getBlue())) > 255){
+				  thisPixel.setBlue(255);
+			  }
+			  else if(thisPixel.getBlue()+(int)(0.5*(thisPixel.getBlue()-topLeftPixel.getBlue())) < 0){
+				  thisPixel.setBlue(0);
+			  }
+			  else{
+				  thisPixel.setBlue(thisPixel.getBlue()+(int)(0.5*(thisPixel.getBlue()-topLeftPixel.getBlue())));
+			  }
+			  if(thisPixel.getGreen()+(int)(0.5*(thisPixel.getGreen()-topLeftPixel.getGreen())) > 255){
+				  thisPixel.setGreen(255);
+			  }
+			  else if(thisPixel.getGreen()+(int)(0.5*(thisPixel.getGreen()-topLeftPixel.getGreen())) < 0){
+				  thisPixel.setGreen(0);
+			  }
+			  else{
+				  thisPixel.setGreen(thisPixel.getGreen()+(int)(0.5*(thisPixel.getGreen()-topLeftPixel.getGreen())));
+			  }
+		  }
+	  }
+  }
   
   
   /* Main method for testing - each class in Java can have a main 

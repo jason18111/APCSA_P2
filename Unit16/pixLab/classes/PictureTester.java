@@ -111,6 +111,12 @@ public class PictureTester
 	  swan.copy(fromPic, startRow, startCol);
 	  swan.explore();
   }
+  public static void testSharpen(){
+	  Picture redMoto = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\redMotorcycle.jpg");
+	  redMoto.explore();
+	  redMoto.sharpen(0, 0, 630, 470);
+	  redMoto.explore();
+  }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -135,6 +141,7 @@ public class PictureTester
 	Picture beach = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\beach.jpg");
     //testCopy(beach, 20, 50);
     //testEdgeDetection();
+	testSharpen();
 //END HERE
     //testEdgeDetection2();
     //testChromakey();

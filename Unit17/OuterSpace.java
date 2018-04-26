@@ -19,10 +19,12 @@ import java.util.ArrayList;
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
+	private int count = 1;
 //	private ArrayList <Alien> alien= new ArrayList<Alien>();
 //	private ArrayList<Ammo> ammo = new ArrayList<Ammo>();
-	private AlienHorde aliens = new AlienHorde(20);
+	private AlienHorde aliens = new AlienHorde(count);
 	private Bullets ammo = new Bullets();
+	private Scoreboard scoreboard = new Scoreboard();
     
 	/* uncomment once you are ready for this part
 	 *
@@ -79,12 +81,19 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			alien.get(i).draw(graphToBack);
 		}
 */
+
 		ammo.drawEmAll(graphToBack);
-		ammo.cleanEmUp(aliens.getList());
 		ammo.moveEmAll();
 		aliens.drawEmAll(graphToBack);
-		aliens.removeDeadOnes(ammo.getList());
+		ammo.cleanEmUp(aliens.removeDeadOnes(ammo.getList()));
 		aliens.moveEmAll();
+
+		if(aliens.getList().size()==0){
+			count++;
+			scoreboard.beatLevel(graphToBack);
+			aliens = new AlienHorde(count);
+		}
+		scoreboard.draw(graphToBack);
 
 		if(keys[0] == true)
 		{

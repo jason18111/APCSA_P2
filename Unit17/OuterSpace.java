@@ -5,6 +5,7 @@
 //Lab  -
 
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Graphics;
 import java.awt.Graphics2D;
 import java.awt.Canvas;
@@ -15,6 +16,7 @@ import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
@@ -88,13 +90,17 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 		ammo.cleanEmUp(aliens.removeDeadOnes(ammo.getList()));
 		aliens.moveEmAll();
 
-		if(aliens.getList().size()==0){
-			count++;
-			scoreboard.beatLevel(graphToBack);
-			aliens = new AlienHorde(count);
-		}
+
+		
 		scoreboard.draw(graphToBack);
 
+		if(aliens.getList().size()==0){
+			count++;
+			
+			scoreboard.beatLevel(window);
+			aliens = new AlienHorde(count);
+		}
+		
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");

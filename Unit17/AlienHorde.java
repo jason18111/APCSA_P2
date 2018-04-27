@@ -32,6 +32,11 @@ public class AlienHorde
 			}
 		}
 	}
+	public AlienHorde(String str, int level) {
+		for(int i=0; i<=level*3; i++) {
+			aliens.add(new Alien(50, 100, 100, 100, 5));
+		}
+	}
 
 	public void add(Alien al)
 	{
@@ -53,9 +58,10 @@ public class AlienHorde
 				right = false;
 				left = true;
 				for(int j = 0; j<aliens.size(); j++){
+					int speed = aliens.get(j).getSpeed();
 					aliens.get(j).setSpeed(10);
 					aliens.get(j).move("DOWN");
-					aliens.get(j).setSpeed(1);
+					aliens.get(j).setSpeed(speed);
 				}
 				break;
 			}
@@ -63,9 +69,10 @@ public class AlienHorde
 				left = false;
 				right = true;
 				for(int j = 0; j<aliens.size(); j++){
+					int speed = aliens.get(j).getSpeed();
 					aliens.get(j).setSpeed(10);
 					aliens.get(j).move("DOWN");
-					aliens.get(j).setSpeed(1);
+					aliens.get(j).setSpeed(speed);
 				}
 				break;
 			}
@@ -105,7 +112,14 @@ public class AlienHorde
 		return null;
 	}
 	
-	
+	public boolean checkLost() {
+		for(int i = 0; i<aliens.size(); i++) {
+			if(aliens.get(i).getY()+aliens.get(i).getHeight()>=580){
+				return true;
+			}
+		}
+		return false;
+	}
 
 	public String toString()
 	{

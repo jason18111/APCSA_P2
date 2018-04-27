@@ -16,15 +16,16 @@ import static java.lang.Character.*;
 import java.awt.image.BufferedImage;
 import java.awt.event.ActionListener;
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.concurrent.TimeUnit;
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
 	private Ship ship;
-	private int count = 1;
+	private int level = 1;
 //	private ArrayList <Alien> alien= new ArrayList<Alien>();
 //	private ArrayList<Ammo> ammo = new ArrayList<Ammo>();
-	private AlienHorde aliens = new AlienHorde(count);
+	private AlienHorde aliens = new AlienHorde(level);
 	private Bullets ammo = new Bullets();
 	private Scoreboard scoreboard = new Scoreboard();
     
@@ -36,6 +37,10 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 
 	private boolean[] keys;
 	private BufferedImage back;
+	private EnemyAmmo enemy = new EnemyAmmo();
+	private long startTime = System.currentTimeMillis();
+	private int shooter=0;
+	private int timer=400;
 
 	public OuterSpace()
 	{
@@ -83,24 +88,80 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			alien.get(i).draw(graphToBack);
 		}
 */
+		
+//making aliens shoot		
+		long elapsedTime=(new Date()).getTime()-startTime;
+		if(elapsedTime%timer >= -5 && elapsedTime%timer<5){
+			if(shooter >= aliens.getList().size()) {
+				shooter=0;
+			}
+			Alien alien = aliens.getList().get(shooter);
+			enemy.add(new Ammo(alien.getX()+alien.getWidth()/2-2 , alien.getY()+14, 3));
+			shooter++;
+			do{
+				timer=(int) (Math.random()*500);
+			}while(timer<100);
+		}
 
+
+
+
+			
+//checking for loss
+		if(aliens.checkLost()){
+			window.setFont(new Font("Verdana", Font.BOLD, 60));
+			window.setColor(Color.YELLOW);
+			window.drawString("You Lost :(", 150, 250);
+			return;
+		}
+		for(int i = 0; i<aliens.getList().size(); i++) {
+			Alien alien = aliens.getList().get(i);
+			if(ship.getX()+ship.getWidth()-17>alien.getX() && ship.getX()<alien.getX()+alien.getWidth()-17
+			&& ship.getY()+ship.getHeight()-10 > alien.getY() && ship.getY() < alien.getY()+alien.getHeight()-10){
+				window.setFont(new Font("Verdana", Font.BOLD, 60));
+				window.setColor(Color.YELLOW);
+				window.drawString("You Lost :(", 150, 250);
+				return;
+			}
+		}
+		
+		if(enemy.loss(ship)){
+			window.setFont(new Font("Verdana", Font.BOLD, 60));
+			window.setColor(Color.YELLOW);
+			window.drawString("You Lost :(", 150, 250);
+			return;
+		}
+		
+//Update stuff		
+		enemy.drawEmAll(graphToBack);
+		enemy.moveEmAll();
 		ammo.drawEmAll(graphToBack);
 		ammo.moveEmAll();
 		aliens.drawEmAll(graphToBack);
 		ammo.cleanEmUp(aliens.removeDeadOnes(ammo.getList()));
 		aliens.moveEmAll();
-
-
-		
 		scoreboard.draw(graphToBack);
-
+		
+		
+//Check if all aliens are dead
 		if(aliens.getList().size()==0){
-			count++;
-			
+			shooter=0;
+			enemy.removeAll();
+			ammo.removeAll();
+			level++;
 			scoreboard.beatLevel(window);
-			aliens = new AlienHorde(count);
+//boss level every 5 rounds
+			if(level%5 == 0){
+				scoreboard.bossLevel(window);
+				aliens=new AlienHorde("", level);
+			}
+			else {
+			aliens = new AlienHorde(level);
+			}
 		}
 		
+		
+//key commands		
 		if(keys[0] == true)
 		{
 			ship.move("LEFT");

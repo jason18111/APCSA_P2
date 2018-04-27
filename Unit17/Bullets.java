@@ -45,6 +45,10 @@ public class Bullets
 	{
 		ammo.remove(ammo1);
 	}
+	
+	public void removeAll() {
+		ammo.clear();
+	}
 
 	public List<Ammo> getList()
 	{

@@ -76,7 +76,6 @@ public class AlienHorde
 				}
 				break;
 			}
-
 		}
 		for(int i = 0; i<aliens.size(); i++){
 			if(right == true){

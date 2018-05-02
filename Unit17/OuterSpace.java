@@ -4,6 +4,13 @@
 //Class - 
 //Lab  -
 
+import javax.*;
+import javax.swing.JButton;
+import javax.swing.JFrame;
+import javax.swing.JPanel;
+
+import java.awt.*;
+import java.awt.event.*;
 import java.awt.Color;
 import java.awt.Font;
 import java.awt.Graphics;
@@ -18,6 +25,7 @@ import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.concurrent.TimeUnit;
+
 
 public class OuterSpace extends Canvas implements KeyListener, Runnable
 {
@@ -41,7 +49,6 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 	private long startTime = System.currentTimeMillis();
 	private int shooter=0;
 	private int timer=400;
-
 	public OuterSpace()
 	{
 		setBackground(Color.black);
@@ -100,7 +107,7 @@ public class OuterSpace extends Canvas implements KeyListener, Runnable
 			shooter++;
 			do{
 				timer=(int) (Math.random()*500);
-			}while(timer<100);
+			}while(timer<150);
 		}
 
 

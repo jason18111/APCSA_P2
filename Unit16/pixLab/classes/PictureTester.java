@@ -9,6 +9,7 @@
 public class PictureTester
 {
   /** Method to test zeroBlue */
+  private static Picture beach = new Picture("H:\\APCSA_P2\\Unit16\\pixLab\\images\\beach.jpg");
   public static void testZeroBlue()
   {
     Picture beach = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\beach.jpg");
@@ -117,6 +118,15 @@ public class PictureTester
 	  redMoto.sharpen(0, 0, 630, 470);
 	  redMoto.explore();
   }
+  public static void testEncode(){
+	  beach.explore();
+	  beach.encode(new Picture("H:\\APCSA_P2\\Unit16\\pixLab\\images\\msg.jpg"));
+	  beach.explore();
+  }
+  
+  public static void testDecode(){
+	  beach.decode().explore();
+  }
   
   /** Main method for testing.  Every class can have a main
     * method in Java */
@@ -138,10 +148,12 @@ public class PictureTester
     //testMirrorGull();
     //testMirrorDiagonal();
     //testCollage();
-	Picture beach = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\beach.jpg");
+	//Picture beach = new Picture("C:\\Users\\linj6200\\Desktop\\APCSA_P2\\Unit16\\pixLab\\images\\beach.jpg");
     //testCopy(beach, 20, 50);
     //testEdgeDetection();
-	testSharpen();
+	//testSharpen();
+	testEncode();
+	testDecode();
 //END HERE
     //testEdgeDetection2();
     //testChromakey();

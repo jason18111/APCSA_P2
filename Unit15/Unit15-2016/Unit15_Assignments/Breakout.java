@@ -7,22 +7,27 @@ import java.awt.Graphics2D;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.awt.image.BufferedImage;
+import java.util.ArrayList;
 
 public class Breakout extends Canvas implements KeyListener, Runnable{
 	private Paddle paddle;
 	private Ball ball;
 	private boolean[] keys;
 	private BufferedImage back;
-	
+	private ArrayList<Block> blocks = new ArrayList<Block>();
+	private ArrayList<Color> colors = new ArrayList<Color>();
+	private int level=1;
 	
 	public Breakout(){
 		//set up all variables related to the game
 //		ball=new Ball();
-		ball=new Ball();
+		ball=new Ball(300, 300, 10, 10);
 //		ball=new SpeedUpBall();
-		paddle=new Paddle(10,100,10,50,3);
-		
-
+		paddle=new Paddle(400,500,40,40,3);
+		colors.add(Color.red);
+		colors.add(Color.blue);
+		colors.add(Color.green);
+		createBlocks(level);
 		keys = new boolean[4];
 
     
@@ -39,7 +44,10 @@ public class Breakout extends Canvas implements KeyListener, Runnable{
 
 	   public void paint(Graphics window)
 	   {
-
+		   if(blocks.size()==0){
+			   level++;
+			   createBlocks(level);
+		   }
 			//set up the double buffering to make the game animation nice and smooth
 			Graphics2D twoDGraph = (Graphics2D)window;
 
@@ -52,84 +60,200 @@ public class Breakout extends Canvas implements KeyListener, Runnable{
 			//we will draw all changes on the background image
 			Graphics graphToBack = back.createGraphics();
 			graphToBack.setColor(Color.WHITE);
-			graphToBack.fillRect(450, 0, 200, 150);
+			graphToBack.fillRect(0, 0, 800, 800);
+			graphToBack.setColor(Color.BLACK);
+			graphToBack.drawString("Level: " + level, 500, 100);
 			graphToBack.setColor(Color.RED);
-
-
-			Block topWall = new Block(0, 0, 800, 1, Color.BLACK);
-			Block bottomWall = new Block(0, 560, 800, 1, Color.BLACK);
+			Block rightWall = new Block(775, 0, 50, 600, Color.BLACK);
+			Block leftWall = new Block(0, 0, 10, 600, Color.BLACK);
+			Block topWall = new Block(0, 0, 800, 10, Color.BLACK);
+			Block bottomWall = new Block(0, 551, 800, 10, Color.BLACK);
 			topWall.draw(graphToBack);
 			bottomWall.draw(graphToBack);
+			rightWall.draw(graphToBack);
+			leftWall.draw(graphToBack);
+			for(int i = 0; i<blocks.size(); i++){
+				blocks.get(i).draw(graphToBack);
+			}
 			ball.moveAndDraw(graphToBack);
 			paddle.draw(graphToBack);
-
+			
 			//see if ball hits left wall or right wall
-
-
+			if(ball.didCollideRight(rightWall)){
+				ball.setXSpeed(0-ball.getXSpeed());
+			}
+			else if(ball.didCollideLeft(leftWall)){
+				ball.setXSpeed(0-ball.getXSpeed());
+			}
 
 			
 			//see if the ball hits the top or bottom wall 
-
-
+			if(ball.didCollideTop(topWall)){
+				ball.setYSpeed(0-ball.getYSpeed());
+			}
+			else if(ball.didCollideBottom(bottomWall)){
+				ball.setYSpeed(0-ball.getYSpeed());
+			}
 
 			//see if ball hits paddles or blocks
+			if(ball.didCollideRight(paddle)){
+				ball.setXSpeed(0-ball.getXSpeed());
+			}
+			else if(ball.didCollideLeft(paddle)){
+				ball.setXSpeed(0-ball.getXSpeed());
+			}
+			else if(ball.didCollideTop(paddle)){
+				ball.setYSpeed(0-ball.getYSpeed());
+			}
+			else if(ball.didCollideBottom(paddle)){
+				ball.setYSpeed(0-ball.getYSpeed());
+			}
 			
-
-			
-			
-			
+			//see if ball hits the blocks
+			for(int i = 0; i<blocks.size(); i++){
+				if(ball.didCollideRight(blocks.get(i))){
+					ball.setXSpeed(0-ball.getXSpeed());
+					blocks.remove(i);
+				}
+				else if(ball.didCollideLeft(blocks.get(i))){
+					ball.setXSpeed(0-ball.getXSpeed());
+					blocks.remove(i);
+				}
+				else if(ball.didCollideTop(blocks.get(i))){
+					ball.setYSpeed(0-ball.getYSpeed());
+					blocks.remove(i);
+				}
+				else if(ball.didCollideBottom(blocks.get(i))){
+					ball.setYSpeed(0-ball.getYSpeed());
+					blocks.remove(i);
+				}
+			}
 			
 			
 			//see if the paddles need to be moved
 			ball.moveAndDraw(graphToBack);
 			paddle.draw(graphToBack);
 			
-			
-			if(keys[1] == true)
-			{
-				//move left paddle up and draw it on the window
-				paddle.moveUpAndDraw(graphToBack);
-			}
 			if(keys[0] == true)
 			{
-				//move left paddle down and draw it on the window
+				paddle.moveLeftAndDraw(graphToBack);
+			}
+			if(keys[1] == true)
+			{
+				paddle.moveRightAndDraw(graphToBack);
+			}
+			if(keys[2] == true)
+			{
 				paddle.moveDownAndDraw(graphToBack);
 			}
 			if(keys[3] == true)
 			{
 				paddle.moveUpAndDraw(graphToBack);
 			}
-			if(keys[2] == true)
-			{
-				paddle.moveDownAndDraw(graphToBack);
-			}
-
+			
 			twoDGraph.drawImage(back, null, 0, 0);
-			}
+	   }
 
 		public void keyPressed(KeyEvent e)
 		{
-			switch(toUpperCase(e.getKeyChar()))
+			if (e.getKeyCode() == KeyEvent.VK_LEFT)
 			{
-				case 'W' : keys[0]=true; break;
-				case 'Z' : keys[1]=true; break;
-				case 'I' : keys[2]=true; break;
-				case 'M' : keys[3]=true; break;
+				keys[0] = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+			{
+				keys[1] = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_UP)
+			{
+				keys[2] = true;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN)
+			{
+				keys[3] = true;
 			}
 		}
 
 		public void keyReleased(KeyEvent e)
 		{
-			switch(toUpperCase(e.getKeyChar()))
+			if (e.getKeyCode() == KeyEvent.VK_LEFT)
 			{
-				case 'W' : keys[0]=false; break;
-				case 'Z' : keys[1]=false; break;
-				case 'I' : keys[2]=false; break;
-				case 'M' : keys[3]=false; break;
+				keys[0] = false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_RIGHT)
+			{
+				keys[1] = false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_UP)
+			{
+				keys[2] = false;
+			}
+			if (e.getKeyCode() == KeyEvent.VK_DOWN)
+			{
+				keys[3] = false;
 			}
 		}
 
 		public void keyTyped(KeyEvent e){}
-	
+		
+		public void createBlocks(int level){
+			int x = 10;
+			int y = 10;
+			int counter = 0;
+			for(int j=0; j<level; j++){
+				for(int i = 0; i<17; i++){
+					blocks.add(new Block(x, y, 45, 45, colors.get(counter)));
+					counter++;
+					if(counter==colors.size()){
+						counter=0;
+					}
+					x+=45;
+				}
+				x=x-45;
+				y=y+45;
+				for(int i=0; i<11; i++){
+					blocks.add(new Block(x, y, 45, 45, colors.get(counter)));
+					counter++;
+					if(counter==colors.size()){
+						counter=0;
+					}
+					y+=45;
+				}
+				x=x-45;
+				y=y-45;
+				for(int i = 0; i<16; i++){
+					blocks.add(new Block(x, y, 45, 45, colors.get(counter)));
+					counter++;
+					if(counter==colors.size()){
+						counter=0;
+					}
+					x=x-45;
+				}
+				y=y-45;
+				x=x+45;
+				for(int i = 0; i<10; i++){
+					blocks.add(new Block(x, y, 45, 45, colors.get(counter)));
+					counter++;
+					if(counter==colors.size()){
+						counter=0;
+					}
+					y=y-45;
+				}
+			}
+		}
+		
+		public void run()
+		   {
+		   	try
+		   	{
+		   		while(true)
+		   		{
+		   		   Thread.currentThread().sleep(8);
+		            repaint();
+		         }
+		      }catch(Exception e)
+		      {
+		      }
+		  	}	
 
 }

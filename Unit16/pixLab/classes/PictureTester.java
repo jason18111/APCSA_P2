@@ -120,7 +120,7 @@ public class PictureTester
   }
   public static void testEncode(){
 	  beach.explore();
-	  beach.encode(new Picture("H:\\APCSA_P2\\Unit16\\pixLab\\images\\msg.jpg"));
+	  beach.encode(new Picture("H:\\APCSA_P2\\Unit16\\pixLab\\images\\thing.jpg"));
 	  beach.explore();
   }
   

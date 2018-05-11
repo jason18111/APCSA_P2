@@ -14,10 +14,10 @@ public class TheGame extends JFrame
 
 	public TheGame()
 	{
-		super("PONG");
+		super("Breakout");
 		setSize(WIDTH,HEIGHT);
 		
-		Pong game = new Pong();
+		Breakout game = new Breakout();
 		
 		((Component)game).setFocusable(true);			
 		getContentPane().add(game);

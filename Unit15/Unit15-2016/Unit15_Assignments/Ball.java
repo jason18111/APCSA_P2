@@ -22,22 +22,21 @@ public class Ball extends Block implements Collidable
 	//add the other Ball constructors
 	public Ball(int x, int y) {
 		super(x, y);
-		xSpeed=3;
+		xSpeed=2;
 		ySpeed=1;
 	}
 	public Ball(int x, int y, int width, int height) {
 		super(x, y, width, height);
-		xSpeed=3;
+		xSpeed=2;
 		ySpeed=1;
 	}
 	public Ball(int x, int y, int width, int height, Color col) {
 		super(x, y, width, height, col);
-		xSpeed=3;
+		xSpeed=2;
 		ySpeed=1;
 	}
 	public Ball(int x, int y , int width, int height, Color col, int xSpd, int ySpd) {
 		super(x, y , width, height, col);
-		xSpeed=xSpd;
 		setXSpeed(xSpd);
 		setYSpeed(ySpd);
 	}
@@ -85,35 +84,85 @@ public class Ball extends Block implements Collidable
 		return output;
 	}
 	public boolean didCollideLeft(Object obj){
-		Paddle paddle = (Paddle) obj;
-		if(this.getX()<=paddle.getX()+paddle.getWidth()-this.getXSpeed()
-		&& this.getY()>=paddle.getY()
-		&& this.getY()<=paddle.getY()+paddle.getHeight()){
+		
+		
+		
+		Block block = (Block) obj;
+		if(obj.getClass().getName().equals("Paddle")){
+			Paddle paddle = (Paddle) obj;
+			if(this.getX()<=block.getX()+block.getWidth()-this.getXSpeed()+paddle.getSpeed() && this.getX()>=block.getX()+block.getWidth()+this.getXSpeed()-paddle.getSpeed()
+			&& this.getY()+this.getHeight()>=block.getY()
+			&& this.getY()<=block.getY()+block.getHeight()
+			&& this.getXSpeed() < 0){
+				return true;
+			}
+		}
+		
+		
+		else if(this.getX()<=block.getX()+block.getWidth()-this.getXSpeed() && this.getX()>=block.getX()+block.getWidth()+this.getXSpeed()-5
+		&& this.getY()+this.getHeight()>=block.getY()
+		&& this.getY()<=block.getY()+block.getHeight()
+		&& this.getXSpeed() < 0){
 			return true;
 		}
 			return false;
 	}
 	public boolean didCollideRight(Object obj){
-		Paddle paddle = (Paddle) obj;
-		if(this.getX()+this.getWidth()>=paddle.getX()-this.getXSpeed()
-		&& this.getY()>=paddle.getY()
-		&& this.getY()<=paddle.getY()+paddle.getHeight()){
+		Block block = (Block) obj;
+		
+		
+		if(obj.getClass().getName().equals("Paddle")){
+			Paddle paddle = (Paddle) obj;
+			if(this.getX()+this.getWidth()>=block.getX()-this.getXSpeed()-paddle.getSpeed() && this.getX()+this.getWidth()<=block.getX()+this.getXSpeed()+paddle.getSpeed()
+			&& this.getY()+this.getHeight()>=block.getY()
+			&& this.getY()<=block.getY()+block.getHeight()
+			&& this.getXSpeed() > 0){
+				return true;
+			}
+		}
+			
+		if(this.getX()+this.getWidth()>=block.getX()-this.getXSpeed() && this.getX()+this.getWidth()<=block.getX()+this.getXSpeed()+5
+		&& this.getY()+this.getHeight()>=block.getY()
+		&& this.getY()<=block.getY()+block.getHeight()
+		&& this.getXSpeed() > 0){
 			return true;
 		}
 		return false;
 	}
 	public boolean didCollideTop(Object obj){
 		Block block = (Block) obj;
-		if((this.getY()<=block.getY()+this.getHeight()+block.getHeight() && this.getY()>=block.getY()+block.getHeight())
-				&& this.getX()>=block.getX() && this.getX()<=block.getX()+block.getWidth()){
+		
+		if(obj.getClass().getName().equals("Paddle")){
+			Paddle paddle = (Paddle) obj;
+			if((this.getY()<=block.getY()+block.getHeight()-this.getYSpeed()+paddle.getSpeed() && this.getY()>=block.getY()+this.getYSpeed()-paddle.getSpeed()-5)
+					&& this.getX()>=block.getX() && this.getX()+this.getWidth()<=block.getX()+block.getWidth()
+					&& this.getYSpeed() < 0){
+				return true;
+			}
+		}
+		
+		if((this.getY()<=block.getY()+block.getHeight()-this.getYSpeed() && this.getY()>=block.getY()+this.getYSpeed())
+				&& this.getX()>=block.getX() && this.getX()+this.getWidth()<=block.getX()+block.getWidth()
+				&& this.getYSpeed() < 0){
 			return true;
 		}
 		return false;
 	}
 	public boolean didCollideBottom(Object obj) {
 		Block block = (Block) obj;
-		if((this.getY()<=block.getY()+this.getHeight() && this.getY()>=block.getY())
-				&& this.getX()>=block.getX() && this.getX()<=block.getX()+block.getWidth()){
+		
+		if(obj.getClass().getName().equals("Paddle")){
+			Paddle paddle = (Paddle) obj;
+			if((this.getY()+this.getHeight()>=block.getY()-this.getYSpeed()-paddle.getSpeed() && this.getY()+this.getHeight()<=block.getY()+this.getYSpeed()+paddle.getSpeed())
+					&& this.getX()>=block.getX() && this.getX()+this.getWidth()<=block.getX()+block.getWidth()
+					&& this.getYSpeed() > 0){
+				return true;
+			}
+		}
+		
+		if((this.getY()+this.getHeight()>=block.getY()-this.getYSpeed() && this.getY()+this.getHeight()<=block.getY()+this.getYSpeed()+5)
+				&& this.getX()>=block.getX() && this.getX()+this.getWidth()<=block.getX()+block.getWidth()
+				&& this.getYSpeed() > 0){
 			return true;
 		}
 		return false;
